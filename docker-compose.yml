@@ -1,0 +1,69 @@
+version: '3.7'
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:1.7.6-alpine
+    restart: always
+    command: --docker
+    labels:
+      - traefik.frontend.rule=Host:monitor.localhost;
+      - traefik.port=8080
+      - traefik.enable=true
+      - traefik.docker.network=e-commerce_msa_mynet
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $PWD/traefik.toml:/etc/traefik/traefik.toml
+    ports:
+      - 80:80
+    networks:
+      - mynet
+
+  mgdb:
+    image: mongo:4.4
+    container_name: myMongoDb
+    restart: always
+    volumes:
+      - $PWD/storage/mongodb:/data/db
+    networks:
+      - mynet
+
+  app:
+    build: src/app/
+    depends_on:
+      - mgdb
+    restart: always
+    labels:
+      - traefik.frontend.rule=Host:localhost
+      - traefik.port=3000
+      - traefik.enable=true
+      - traefik.docker.network=e-commerce_msa_mynet
+    networks:
+      - mynet
+
+  users:
+    build: src/users/
+    depends_on:
+      - mgdb
+    restart: always
+    networks:
+      - mynet
+
+  products:
+    build: src/products/
+    depends_on:
+      - mgdb
+    restart: always
+    networks:
+      - mynet
+
+  orders:
+    build: src/orders/
+    depends_on:
+      - mgdb
+    restart: always
+    networks:
+      - mynet
+
+networks:
+  mynet:

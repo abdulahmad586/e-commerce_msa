@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/cookie.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/request.js"></script>
+    <script src="scripts/products.js"></script>
+    <title>Add Product</title>
+
+</head>
+
+<body>
+    <h1>
+        Add new product!
+    </h1>
+    <p>Enter product details</p>
+    <form id="product-form">
+        <input id="form_name" type="text" name="name" placeholder="Product name" /><br>
+        <input id="form_category" type="text" name="category" placeholder="Category" /><br>
+        <input id="form_quantity" type="number" name="quantity" placeholder="Quantity" /><br>
+        <input id="form_price" type="number" name="price" placeholder="Price" /><br>
+        <br>
+        <input type="submit" name="submit" value="Submit" /><br>
+        <br>
+
+    </form>
+</body>
+<script lang="JavaScript">
+    var form = document.getElementById('product-form');
+    if (form && form.attachEvent) {
+        form.attachEvent("submit", addProduct);
+    } else {
+        form.addEventListener("submit", addProduct);
+    }
+
+    let user = checkAuth((err, result) => {
+        if (err) {
+            alert(err);
+            window.location.replace('/login.html');
+        } else {
+            if (result.userType !== 'Admin') {
+                alert('Only admin is allowed to add products');
+                window.location.replace('/index.html');
+            }
+        }
+    });
+
+</script>
+
+</html>

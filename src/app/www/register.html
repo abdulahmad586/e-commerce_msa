@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/request.js"></script>
+    <script src="scripts/cookie.js"></script>
+    <title>Login page</title>
+
+</head>
+
+<body>
+    <h1>
+        Welcome New User!
+    </h1>
+    <p>Please fill in the registration form</p>
+    <form id="register-form">
+        <input id="form_name" type="text" name="name" placeholder="Full name" /><br>
+        <label>Customer: </label>
+        <input id="form_type_customer" type="radio" name="type" value="Customer" /><br>
+        <label>Admin: </label>
+        <input id="form_type_admin" type="radio" name="type" value="Admin" /><br>
+        <input id="form_address" type="text" name="address" placeholder="Home address" /><br>
+        <input id="form_email" type="email" name="email" placeholder="Email address" /><br>
+        <input id="form_password" type="password" name="password" placeholder="Password" /><br>
+        <br>
+        <input type="submit" name="submit" value="Submit" /><br>
+        <br>
+        <a>Or</a> <a href="/login.html">Login</a>
+    </form>
+</body>
+<script lang="JavaScript">
+    var form = document.getElementById('register-form');
+    if (form && form.attachEvent) {
+        form.attachEvent("submit", register);
+    } else {
+        form.addEventListener("submit", register);
+    }
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/request.js"></script>
+    <script src="scripts/cookie.js"></script>
+    <script src="scripts/auth.js"></script>
+    <title>Login page</title>
+
+</head>
+
+<body>
+    <h1>
+        Welcome back!
+    </h1>
+    <p>Please use your credentials to login</p>
+    <form id="login-form" method="POST" action="">
+        <input id="form_email" type="email" name="email" placeholder="Email address" required="true" /><br>
+        <input id="form_password" type="password" name="password" placeholder="Password" required="true" /><br>
+        <br>
+        <input type="submit" name="submit" value="Submit" /><br>
+        <br>
+        <a>Or</a> <a href="/register.html">Register</a>
+    </form>
+</body>
+<script lang="JavaScript">
+    var form = document.getElementById('login-form');
+    if (form && form.attachEvent) {
+        form.attachEvent("submit", login);
+    } else {
+        form.addEventListener("submit", login);
+    }
+</script>
+
+</html>

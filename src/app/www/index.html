@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/cookie.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/request.js"></script>
+    <script src="scripts/home.js"></script>
+
+    <title>E-Commerce Home</title>
+</head>
+
+<body>
+    <h1>Welcome to our store</h1>
+    <p>Browse through our collection of products</p>
+
+    <ul style="display: flex; gap: 20px;">
+        <li>Welcome, <a id="customer-name"> </a></li>
+        <li><a href="#logout" onclick="logout()">Logout</a></li>
+        <div class="admin-options">
+            <li><a href="add_product.html">Add Product</a></li>
+            <li><a href="view_orders.html">View Orders</a></li>
+            <li><a href="view_customers.html">View Customers</a></li>
+        </div>
+    </ul>
+    <br>
+    <br>
+
+    <div id="render" style="display: flex; flex-wrap: wrap; gap: 20px; max-width: 500px">
+
+    </div>
+    <br>
+    <button onclick="loadProducts(-1)">Prev</button>
+    <a id="page-no">1</a>
+    <button onclick="loadProducts(1)">Next</button>
+    <style>
+        .product-item p {
+            margin: 5px;
+            font-size: 12px;
+        }
+
+        .buy-form {
+            display: flex;
+        }
+    </style>
+
+</body>
+
+
+
+</html>
